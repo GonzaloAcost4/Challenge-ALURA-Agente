@@ -17,7 +17,7 @@ Oracle Cloud Infrastructure (OCI).
                       │
 ┌─────────────────────▼────────────────────────────────────┐
 │                  Agente Inteligente                        │
-│             LangChain + Groq (Llama 3) API                 │
+│             LangChain + Groq (openai/gpt-oss-20b) API                 │
 │         (Orquestación, Memoria, Razonamiento)             │
 └─────────────────────┬────────────────────────────────────┘
                       │
@@ -43,7 +43,7 @@ Oracle Cloud Infrastructure (OCI).
 | Componente       | Tecnología                          |
 |------------------|-------------------------------------|
 | Lenguaje         | Python 3.11+                        |
-| LLM              | Groq Llama 3 (via API key)          |
+| LLM              | Groq (openai/gpt-oss-20b) (via API key)    |
 | Embeddings       | FastEmbed (Local CPU)               |
 | Orquestación     | LangChain                           |
 | Vector Store     | ChromaDB (local/persistente)        |
@@ -148,7 +148,7 @@ COLLECTION_NAME=knowledge_base_v2
 ---
 
 ## 📝 Notas
-- Se usa **Groq Llama 3** como LLM por su velocidad sobresaliente y plan gratuito sin errores 500.
+- Se usa **Groq (openai/gpt-oss-20b)** como LLM por su velocidad sobresaliente y excelente rendimiento.
 - Los embeddings se generan **localmente con FastEmbed**, lo que elimina llamadas externas y previene límites de API o cuota agotada.
 - **ChromaDB** se elige como vector store por ser liviano, no requiere servidor externo, y persiste en disco.
 - El despliegue en OCI se realizará usando el **Always Free Tier** cuando sea posible.

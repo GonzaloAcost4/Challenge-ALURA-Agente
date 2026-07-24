@@ -4,7 +4,7 @@
 
 ![Python](https://img.shields.io/badge/Python-3.11+-3776ab?style=for-the-badge&logo=python&logoColor=white)
 ![LangChain](https://img.shields.io/badge/LangChain-0.3-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white)
-![Groq](https://img.shields.io/badge/Groq-Llama_3-f55?style=for-the-badge&logoColor=white)
+![Groq](https://img.shields.io/badge/Groq-GPT_OSS_20B-f55?style=for-the-badge&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.38+-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![OCI](https://img.shields.io/badge/Oracle_Cloud-Deployed-F80000?style=for-the-badge&logo=oracle&logoColor=white)
@@ -44,7 +44,7 @@ El agente utiliza la técnica **RAG (Retrieval-Augmented Generation)** para resp
                       │
 ┌─────────────────────▼────────────────────────────────────┐
 │                  Agente Inteligente                        │
-│             LangChain + Groq (Llama 3) API                 │
+│             LangChain + Groq (openai/gpt-oss-20b) API                 │
 │         (Orquestación, Memoria, Razonamiento)             │
 └─────────────────────┬────────────────────────────────────┘
                       │
@@ -63,7 +63,7 @@ El agente utiliza la técnica **RAG (Retrieval-Augmented Generation)** para resp
 1. **Ingesta**: Los documentos PDF del curso se cargan, dividen en fragmentos y se generan embeddings vectoriales de forma local.
 2. **Indexación**: Los embeddings se almacenan en ChromaDB para búsqueda semántica eficiente.
 3. **Consulta**: Cuando el usuario hace una pregunta sobre alguna formación, se buscan los fragmentos más relevantes.
-4. **Generación**: El LLM (Llama 3 vía Groq) genera una respuesta contextualizada usando los fragmentos recuperados.
+4. **Generación**: El LLM (openai/gpt-oss-20b vía Groq) genera una respuesta contextualizada usando los fragmentos recuperados.
 
 ---
 
@@ -72,7 +72,7 @@ El agente utiliza la técnica **RAG (Retrieval-Augmented Generation)** para resp
 | Componente | Tecnología | Propósito |
 |---|---|---|
 | **Lenguaje** | Python 3.11+ | Desarrollo general |
-| **LLM** | Groq (Llama 3 70B) | Generación de respuestas ultrarrápida |
+| **LLM** | Groq (openai/gpt-oss-20b) | Generación de respuestas ultrarrápida |
 | **Embeddings** | FastEmbed (Local CPU) | Representación vectorial sin APIs externas |
 | **Orquestación** | LangChain | Framework para agentes IA |
 | **Vector Store** | ChromaDB | Almacenamiento y búsqueda vectorial |

@@ -16,7 +16,7 @@ CHROMA_PERSIST_DIR = os.getenv("CHROMA_PERSIST_DIR", str(BASE_DIR / "chroma_db")
 
 # --- APIs ---
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
-LLM_MODEL = os.getenv("LLM_MODEL", "llama3-70b-8192")
+LLM_MODEL = os.getenv("LLM_MODEL", "openai/gpt-oss-20b")
 
 # --- ChromaDB ---
 COLLECTION_NAME = os.getenv("COLLECTION_NAME", "knowledge_base")
