@@ -17,7 +17,7 @@ Oracle Cloud Infrastructure (OCI).
                       │
 ┌─────────────────────▼────────────────────────────────────┐
 │                  Agente Inteligente                        │
-│            LangChain + Google Gemini API                   │
+│             LangChain + Groq (Llama 3) API                 │
 │         (Orquestación, Memoria, Razonamiento)             │
 └─────────────────────┬────────────────────────────────────┘
                       │
@@ -26,7 +26,7 @@ Oracle Cloud Infrastructure (OCI).
 │                                                           │
 │  ┌─────────────┐    ┌──────────────┐    ┌─────────────┐  │
 │  │  Documentos  │───▶│  Embeddings  │───▶│ ChromaDB    │  │
-│  │  PDF / CSV   │    │  (Gemini)    │    │ VectorStore │  │
+│  │  PDF / CSV   │    │ (FastEmbed)  │    │ VectorStore │  │
 │  └─────────────┘    └──────────────┘    └─────────────┘  │
 └──────────────────────────────────────────────────────────┘
                       │
@@ -43,8 +43,8 @@ Oracle Cloud Infrastructure (OCI).
 | Componente       | Tecnología                          |
 |------------------|-------------------------------------|
 | Lenguaje         | Python 3.11+                        |
-| LLM              | Google Gemini (via API key)         |
-| Embeddings       | Google Gemini Embedding             |
+| LLM              | Groq Llama 3 (via API key)          |
+| Embeddings       | FastEmbed (Local CPU)               |
 | Orquestación     | LangChain                           |
 | Vector Store     | ChromaDB (local/persistente)        |
 | Interfaz (UI)    | Streamlit                            |
@@ -96,12 +96,12 @@ Challenge-ALURA-Agente/
   - [x] Loader para PDF (PyPDFLoader)
   - [x] Loader para CSV (CSVLoader)
 - [x] Implementar chunking (text splitting)
-- [x] Generar embeddings con Google Gemini
+- [x] Generar embeddings locales con FastEmbed
 - [x] Almacenar embeddings en ChromaDB
 - [x] Implementar función de retrieval (búsqueda semántica)
 
 ### Fase 3: Agente Inteligente ✅
-- [x] Configurar conexión con Google Gemini API
+- [x] Configurar conexión con Groq API
 - [x] Diseñar prompt del sistema (system prompt)
 - [x] Implementar agente con LangChain
   - [x] Memoria conversacional
@@ -140,15 +140,15 @@ Challenge-ALURA-Agente/
 ## 🔑 Variables de Entorno Necesarias
 
 ```env
-GOOGLE_API_KEY=tu_api_key_de_gemini
-CHROMA_PERSIST_DIR=./chroma_db
-COLLECTION_NAME=knowledge_base
+GROQ_API_KEY=tu_api_key_de_groq
+CHROMA_PERSIST_DIR=./chroma_db_v2
+COLLECTION_NAME=knowledge_base_v2
 ```
 
 ---
 
 ## 📝 Notas
-- Se usa **Google Gemini** como LLM por ser gratuito y de alta calidad.
+- Se usa **Groq Llama 3** como LLM por su velocidad sobresaliente y plan gratuito sin errores 500.
+- Los embeddings se generan **localmente con FastEmbed**, lo que elimina llamadas externas y previene límites de API o cuota agotada.
 - **ChromaDB** se elige como vector store por ser liviano, no requiere servidor externo, y persiste en disco.
-- La base de conocimiento puede ser sobre cualquier tema relevante (ej: documentación técnica, manual de producto, FAQ empresarial, etc.).
 - El despliegue en OCI se realizará usando el **Always Free Tier** cuando sea posible.

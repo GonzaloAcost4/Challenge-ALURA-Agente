@@ -4,7 +4,7 @@
 
 ![Python](https://img.shields.io/badge/Python-3.11+-3776ab?style=for-the-badge&logo=python&logoColor=white)
 ![LangChain](https://img.shields.io/badge/LangChain-0.3-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white)
-![Gemini](https://img.shields.io/badge/Google_Gemini-2.0_Flash-4285F4?style=for-the-badge&logo=google&logoColor=white)
+![Groq](https://img.shields.io/badge/Groq-Llama_3-f55?style=for-the-badge&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.38+-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![OCI](https://img.shields.io/badge/Oracle_Cloud-Deployed-F80000?style=for-the-badge&logo=oracle&logoColor=white)
@@ -27,7 +27,7 @@ El agente utiliza la técnica **RAG (Retrieval-Augmented Generation)** para resp
 
 - 🧠 **Agente conversacional** con memoria de contexto
 - 📚 **Base de conocimiento** especializada en los PDFs de ONE AI FOR TECH
-- 🔍 **Búsqueda semántica** con embeddings vectoriales
+- 🔍 **Búsqueda semántica** con embeddings vectoriales locales
 - 💬 **Interfaz de chat** intuitiva y moderna
 - 🐳 **Contenedorizado** con Docker para fácil despliegue
 - ☁️ **Desplegado** en Oracle Cloud Infrastructure (OCI)
@@ -44,7 +44,7 @@ El agente utiliza la técnica **RAG (Retrieval-Augmented Generation)** para resp
                       │
 ┌─────────────────────▼────────────────────────────────────┐
 │                  Agente Inteligente                        │
-│            LangChain + Google Gemini API                   │
+│             LangChain + Groq (Llama 3) API                 │
 │         (Orquestación, Memoria, Razonamiento)             │
 └─────────────────────┬────────────────────────────────────┘
                       │
@@ -53,17 +53,17 @@ El agente utiliza la técnica **RAG (Retrieval-Augmented Generation)** para resp
 │                                                           │
 │  ┌─────────────┐    ┌──────────────┐    ┌─────────────┐  │
 │  │  Documentos  │───▶│  Embeddings  │───▶│ ChromaDB    │  │
-│  │  PDF (ONE)   │    │  (Gemini)    │    │ VectorStore │  │
+│  │  PDF (ONE)   │    │ (FastEmbed)  │    │ VectorStore │  │
 │  └─────────────┘    └──────────────┘    └─────────────┘  │
 └──────────────────────────────────────────────────────────┘
 ```
 
 ### Flujo del sistema
 
-1. **Ingesta**: Los documentos PDF del curso se cargan, dividen en fragmentos y se generan embeddings vectoriales.
+1. **Ingesta**: Los documentos PDF del curso se cargan, dividen en fragmentos y se generan embeddings vectoriales de forma local.
 2. **Indexación**: Los embeddings se almacenan en ChromaDB para búsqueda semántica eficiente.
 3. **Consulta**: Cuando el usuario hace una pregunta sobre alguna formación, se buscan los fragmentos más relevantes.
-4. **Generación**: El LLM (Gemini) genera una respuesta contextualizada usando los fragmentos recuperados.
+4. **Generación**: El LLM (Llama 3 vía Groq) genera una respuesta contextualizada usando los fragmentos recuperados.
 
 ---
 
@@ -72,8 +72,8 @@ El agente utiliza la técnica **RAG (Retrieval-Augmented Generation)** para resp
 | Componente | Tecnología | Propósito |
 |---|---|---|
 | **Lenguaje** | Python 3.11+ | Desarrollo general |
-| **LLM** | Google Gemini 2.0 Flash | Generación de respuestas |
-| **Embeddings** | Google Gemini Embedding | Representación vectorial |
+| **LLM** | Groq (Llama 3 70B) | Generación de respuestas ultrarrápida |
+| **Embeddings** | FastEmbed (Local CPU) | Representación vectorial sin APIs externas |
 | **Orquestación** | LangChain | Framework para agentes IA |
 | **Vector Store** | ChromaDB | Almacenamiento y búsqueda vectorial |
 | **Interfaz** | Streamlit | UI web conversacional |
@@ -113,7 +113,7 @@ Challenge-ALURA-Agente/
 ### Prerrequisitos
 
 - **Python 3.11+**
-- **API Key de Google Gemini** (gratuita en [Google AI Studio](https://aistudio.google.com/apikey))
+- **API Key de Groq** (gratuita en [Groq Console](https://console.groq.com/keys))
 
 ### Paso 1: Clonar el repositorio
 
@@ -144,7 +144,7 @@ pip install -r requirements.txt
 
 ```bash
 cp .env.example .env
-# Editar .env y agregar tu GOOGLE_API_KEY
+# Editar .env y agregar tu GROQ_API_KEY
 ```
 
 ### Paso 5: Indexar documentos de ONE AI FOR TECH
