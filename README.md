@@ -204,17 +204,50 @@ docker compose up -d --build
 
 ---
 
+## 💡 Ejemplos de Preguntas y Respuestas
+
+El agente es capaz de responder consultas complejas sobre el programa y sus contenidos apoyándose en la base de conocimiento:
+
+### ❓ Ejemplo 1: Estructura del Programa
+**Pregunta:** ¿Cuáles son las formaciones que componen el programa ONE AI FOR TECH?  
+**Respuesta del Agente:**
+> El programa **ONE AI FOR TECH (G10 2026)** está compuesto por 5 formaciones principales:
+> 1. **Nivelación**: Fundamentos de programación y control de versiones.
+> 2. **Desarrollo y Orquestación con IA Generativa**: Integración de LLMs en flujos de desarrollo.
+> 3. **Inteligencia de Datos y RAG Avanzado**: Embeddings, bases de datos vectoriales y arquitecturas RAG.
+> 4. **Ingeniería de Agentes y Automatización**: Creación de agentes autónomos y multi-agente.
+> 5. **Oracle Cloud Infrastructure (OCI)**: Despliegue y escalabilidad en la nube.
+>
+> 📎 **Fuentes consultadas:** `ONE_AI_for_Tech_G10_2026.pdf`, `Nivelación.pdf`
+
+### ❓ Ejemplo 2: Conceptos Técnicos de RAG
+**Pregunta:** ¿Qué es un Vector Store y por qué se utiliza en RAG?  
+**Respuesta del Agente:**
+> Un **Vector Store** (como ChromaDB) es una base de datos optimizada para almacenar y recuperar representaciones vectoriales (embeddings) de texto. En una arquitectura RAG, permite realizar búsquedas semánticas eficientes para encontrar los fragmentos de documentos más relevantes a la pregunta del usuario antes de enviar el contexto al LLM.
+>
+> 📎 **Fuentes consultadas:** `Inteligencia de Datos y RAG Avanzado.pdf`
+
+---
+
+## ☁️ Evidencia del Despliegue en OCI
+
+La aplicación ha sido desplegada en una instancia de **Oracle Cloud Infrastructure (OCI)** utilizando Docker Compose.
+
+- 🌐 **Enlace público:** `http://<IP-PUBLICA-OCI>:8501` *(o dominio asignado)*
+- 💻 **Instancia OCI:** Always Free Tier (ARM Ampere A1 / Oracle Linux)
+
+### 📸 Captura de Pantalla
+![Demostración de la aplicación en OCI](docs/screenshot_oci.png)
+
+> _Nota: Reemplazar `docs/screenshot_oci.png` con la captura de pantalla real ejecutándose en el puerto 8501 de tu IP pública de OCI._
+
+---
+
 ## 🧪 Tests
 
 ```bash
 python tests/test_agent.py
 ```
-
----
-
-## 📸 Demostración
-
-> _Capturas de pantalla y evidencias se agregarán aquí._
 
 ---
 
