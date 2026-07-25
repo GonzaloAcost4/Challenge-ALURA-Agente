@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: challenge-alura-agente
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: CHROMA_PERSIST_DIR
+        value: ./chroma_db_v2
+      - key: COLLECTION_NAME
+        value: knowledge_base_v2

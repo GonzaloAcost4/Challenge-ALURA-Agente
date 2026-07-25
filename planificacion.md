@@ -3,7 +3,7 @@
 ## 🎯 Objetivo del Proyecto
 Diseñar y desarrollar un **agente inteligente** capaz de responder preguntas en lenguaje natural, 
 utilizando una base de conocimiento construida a partir de documentos PDF/CSV, con despliegue en 
-Oracle Cloud Infrastructure (OCI).
+Render Cloud (Docker Web Service).
 
 ---
 
@@ -31,8 +31,8 @@ Oracle Cloud Infrastructure (OCI).
 └──────────────────────────────────────────────────────────┘
                       │
 ┌─────────────────────▼────────────────────────────────────┐
-│              Despliegue (Oracle Cloud - OCI)               │
-│          Docker Container en Compute Instance              │
+│                  Despliegue (Render Cloud)                 │
+│              Docker Container Web Service                  │
 └──────────────────────────────────────────────────────────┘
 ```
 
@@ -49,7 +49,7 @@ Oracle Cloud Infrastructure (OCI).
 | Vector Store     | ChromaDB (local/persistente)        |
 | Interfaz (UI)    | Streamlit                            |
 | Contenedorización| Docker                               |
-| Despliegue       | OCI Compute Instance                |
+| Despliegue       | Render Cloud (Web Service)         |
 | Control versión  | Git + GitHub                         |
 
 ---
@@ -116,14 +116,14 @@ Challenge-ALURA-Agente/
 - [x] Agregar indicadores de carga/procesamiento
 - [x] Estilizar la interfaz
 
-### Fase 5: Contenedorización y Despliegue ✅ (parcial)
+### Fase 5: Contenedorización y Despliegue ✅
 - [x] Crear Dockerfile
 - [x] Crear docker-compose.yml
-- [ ] Probar localmente con Docker
-- [ ] Configurar instancia en OCI (Compute Instance)
-- [ ] Desplegar contenedor en OCI
-- [ ] Configurar reglas de red (VCN/Security List)
-- [ ] Verificar acceso público
+- [x] Crear render.yaml (Blueprint)
+- [x] Probar localmente con Docker
+- [x] Conectar repositorio a Render Web Service
+- [x] Desplegar contenedor en Render
+- [x] Verificar acceso público HTTPS
 
 ### Fase 6: Documentación y Entrega ✅ (parcial)
 - [x] Elaborar README completo
@@ -151,4 +151,4 @@ COLLECTION_NAME=knowledge_base_v2
 - Se usa **Groq (openai/gpt-oss-20b)** como LLM por su velocidad sobresaliente y excelente rendimiento.
 - Los embeddings se generan **localmente con FastEmbed**, lo que elimina llamadas externas y previene límites de API o cuota agotada.
 - **ChromaDB** se elige como vector store por ser liviano, no requiere servidor externo, y persiste en disco.
-- El despliegue en OCI se realizará usando el **Always Free Tier** cuando sea posible.
+- El despliegue se realiza en **Render** como un Web Service de Docker con certificado SSL gratuito.

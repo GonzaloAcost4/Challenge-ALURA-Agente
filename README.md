@@ -7,11 +7,11 @@
 ![Groq](https://img.shields.io/badge/Groq-GPT_OSS_20B-f55?style=for-the-badge&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.38+-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![OCI](https://img.shields.io/badge/Oracle_Cloud-Deployed-F80000?style=for-the-badge&logo=oracle&logoColor=white)
+![Render](https://img.shields.io/badge/Render-Deployed-46E3B7?style=for-the-badge&logo=render&logoColor=white)
 
 **Agente conversacional inteligente con RAG (Retrieval-Augmented Generation) que responde preguntas en lenguaje natural basándose en una base de conocimiento personalizada.**
 
-[Demostración](#-demostración) • [Instalación](#-instalación) • [Uso](#-uso) • [Arquitectura](#-arquitectura) • [Despliegue](#-despliegue-en-oci)
+[Demostración](#-demostración) • [Instalación](#-instalación) • [Uso](#-uso) • [Arquitectura](#-arquitectura) • [Despliegue](#-despliegue-en-render)
 
 </div>
 
@@ -30,7 +30,7 @@ El agente utiliza la técnica **RAG (Retrieval-Augmented Generation)** para resp
 - 🔍 **Búsqueda semántica** con embeddings vectoriales locales
 - 💬 **Interfaz de chat** intuitiva y moderna
 - 🐳 **Contenedorizado** con Docker para fácil despliegue
-- ☁️ **Desplegado** en Oracle Cloud Infrastructure (OCI)
+- ☁️ **Desplegado** en la nube mediante Render (Web Service / Docker)
 
 ---
 
@@ -78,7 +78,7 @@ El agente utiliza la técnica **RAG (Retrieval-Augmented Generation)** para resp
 | **Vector Store** | ChromaDB | Almacenamiento y búsqueda vectorial |
 | **Interfaz** | Streamlit | UI web conversacional |
 | **Contenedorización** | Docker | Empaquetado y despliegue |
-| **Cloud** | Oracle Cloud (OCI) | Infraestructura en la nube |
+| **Cloud** | Render | Infraestructura y hosting en la nube |
 
 ---
 
@@ -101,6 +101,7 @@ Challenge-ALURA-Agente/
 ├── .gitignore
 ├── Dockerfile               # Configuración Docker
 ├── docker-compose.yml       # Orquestación Docker
+├── render.yaml              # Configuración Blueprint para Render
 ├── requirements.txt         # Dependencias Python
 ├── planificacion.md         # Planificación del proyecto
 └── README.md                # Este archivo
@@ -185,22 +186,17 @@ docker compose up --build
 # La app estará en http://localhost:8501
 ```
 
-### En OCI (Oracle Cloud Infrastructure)
+### En Render (Cloud Deployment)
 
-1. **Crear instancia de cómputo** (Always Free Tier - ARM Ampere A1)
-2. **Instalar Docker** en la instancia
-3. **Clonar el repositorio** y configurar `.env`
-4. **Ejecutar** con Docker Compose
-5. **Configurar Security List** para abrir el puerto 8501
+El proyecto incluye un archivo `render.yaml` y un `Dockerfile` totalmente listo para Render:
 
-```bash
-# En la instancia OCI
-git clone https://github.com/GonzaloAcost4/Challenge-ALURA-Agente.git
-cd Challenge-ALURA-Agente
-cp .env.example .env
-# Editar .env con tu API key
-docker compose up -d --build
-```
+1. Registrate en [Render.com](https://render.com/) e inicia sesión con GitHub.
+2. Haz clic en **"New +"** -> **"Web Service"**.
+3. Conecta tu repositorio `Challenge-ALURA-Agente`.
+4. Render detectará automáticamente el `Dockerfile`.
+5. En la sección **Environment Variables**, añade:
+   - `GROQ_API_KEY`: Tu API Key de Groq.
+6. Haz clic en **"Create Web Service"**. Tu aplicación estará pública en pocos minutos.
 
 ---
 
@@ -229,17 +225,17 @@ El agente es capaz de responder consultas complejas sobre el programa y sus cont
 
 ---
 
-## ☁️ Evidencia del Despliegue en OCI
+## ☁️ Evidencia del Despliegue en la Nube (Render)
 
-La aplicación ha sido desplegada en una instancia de **Oracle Cloud Infrastructure (OCI)** utilizando Docker Compose.
+La aplicación ha sido preparada y desplegada en **Render** como un servicio Web de Docker.
 
-- 🌐 **Enlace público:** `http://<IP-PUBLICA-OCI>:8501` *(o dominio asignado)*
-- 💻 **Instancia OCI:** Always Free Tier (ARM Ampere A1 / Oracle Linux)
+- 🌐 **Enlace público:** `https://challenge-alura-agente.onrender.com` *(o tu URL pública asignada)*
+- 💻 **Plataforma:** Render Cloud (Docker Web Service)
 
 ### 📸 Captura de Pantalla
-![Demostración de la aplicación en OCI](docs/screenshot_oci.png)
+![Demostración de la aplicación en Render](docs/screenshot_render.png)
 
-> _Nota: Reemplazar `docs/screenshot_oci.png` con la captura de pantalla real ejecutándose en el puerto 8501 de tu IP pública de OCI._
+> _Nota: Reemplazar `docs/screenshot_render.png` con la captura de pantalla real ejecutándose en Render._
 
 ---
 

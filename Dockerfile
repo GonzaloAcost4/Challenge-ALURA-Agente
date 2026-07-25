@@ -14,11 +14,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiar código fuente
 COPY . .
 
-# Puerto de Streamlit
+# Puerto de Streamlit (Render asigna la variable $PORT dinámicamente)
+ENV PORT=8501
 EXPOSE 8501
 
-# Healthcheck
-HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health || exit 1
-
-# Ejecutar Streamlit
-ENTRYPOINT ["streamlit", "run", "app/main.py", "--server.port=8501", "--server.address=0.0.0.0", "--server.headless=true"]
+# Ejecutar Streamlit adaptándose al puerto de Render o local
+CMD ["sh", "-c", "streamlit run app/main.py --server.port=${PORT} --server.address=0.0.0.0 --server.headless=true"]
