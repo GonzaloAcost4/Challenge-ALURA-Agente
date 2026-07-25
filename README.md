@@ -13,7 +13,7 @@
 
 🌐 **[Acceder a la Aplicación en Vivo](https://challenge-alura-agente-ggi9.onrender.com)**
 
-[Arquitectura](#arquitectura) • [Instalación](#instalación) • [Uso](#uso) • [Ejemplos](#ejemplos-de-preguntas-y-respuestas) • [Despliegue y Evidencias](#evidencia-del-despliegue-en-la-nube-render)
+[Arquitectura](#arquitectura) • [Instalación](#instalacion) • [Uso](#uso) • [Ejemplos](#ejemplos) • [Despliegue y Evidencias](#despliegue)
 
 </div>
 
@@ -35,6 +35,8 @@ El agente utiliza la técnica **RAG (Retrieval-Augmented Generation)** para resp
 - ☁️ **Desplegado** en la nube en **Render** (Docker Web Service) con HTTPS
 
 ---
+
+<a id="arquitectura"></a>
 
 ## 🏗️ Arquitectura
 
@@ -115,6 +117,8 @@ Challenge-ALURA-Agente/
 
 ---
 
+<a id="instalacion"></a>
+
 ## 🚀 Instalación
 
 ### Prerrequisitos
@@ -172,6 +176,8 @@ La aplicación estará disponible en `http://localhost:8501`.
 
 ---
 
+<a id="uso"></a>
+
 ## 📖 Uso
 
 1. **Cargar documentos**: Verifica los archivos PDF en `data/knowledge_base/`.
@@ -181,6 +187,8 @@ La aplicación estará disponible en `http://localhost:8501`.
 5. **Guardar**: Haz clic en **"💾 Guardar conversación"** para descargar el historial completo en formato Markdown.
 
 ---
+
+<a id="ejemplos"></a>
 
 ## 💡 Ejemplos de Preguntas y Respuestas
 
@@ -206,6 +214,8 @@ El agente es capaz de responder consultas complejas sobre el programa y sus cont
 > 📎 **Fuentes consultadas:** `Inteligencia de Datos y RAG Avanzado.pdf`
 
 ---
+
+<a id="despliegue"></a>
 
 ## ☁️ Evidencia del Despliegue en la Nube (Render)
 
