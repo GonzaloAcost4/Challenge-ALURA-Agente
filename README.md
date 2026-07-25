@@ -7,11 +7,13 @@
 ![Groq](https://img.shields.io/badge/Groq-GPT_OSS_20B-f55?style=for-the-badge&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.38+-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![Render](https://img.shields.io/badge/Render-Deployed-46E3B7?style=for-the-badge&logo=render&logoColor=white)
+![Render](https://img.shields.io/badge/Render-Live-46E3B7?style=for-the-badge&logo=render&logoColor=white)
 
 **Agente conversacional inteligente con RAG (Retrieval-Augmented Generation) que responde preguntas en lenguaje natural basándose en una base de conocimiento personalizada.**
 
-[Demostración](#-demostración) • [Instalación](#-instalación) • [Uso](#-uso) • [Arquitectura](#-arquitectura) • [Despliegue](#-despliegue-en-render)
+🌐 **[Acceder a la Aplicación en Vivo](https://challenge-alura-agente-ggi9.onrender.com)**
+
+[Arquitectura](#-arquitectura) • [Instalación](#-instalación) • [Uso](#-uso) • [Ejemplos](#-ejemplos-de-preguntas-y-respuestas) • [Despliegue y Evidencias](#-evidencia-del-despliegue-en-la-nube-render)
 
 </div>
 
@@ -27,13 +29,14 @@ El agente utiliza la técnica **RAG (Retrieval-Augmented Generation)** para resp
 
 - 🧠 **Agente conversacional** con memoria de contexto
 - 📚 **Base de conocimiento** especializada en los PDFs de ONE AI FOR TECH
-- 🔍 **Búsqueda semántica** con embeddings vectoriales locales
-- 💬 **Interfaz de chat** intuitiva y moderna
+- 🔍 **Búsqueda semántica** con embeddings vectoriales locales (`FastEmbed`)
+- 💬 **Interfaz de chat** intuitiva, limpia y moderna (Streamlit)
 - 🐳 **Contenedorizado** con Docker para fácil despliegue
-- ☁️ **Desplegado** en la nube mediante Render (Web Service / Docker)
+- ☁️ **Desplegado** en la nube en **Render** (Docker Web Service) con HTTPS
 
 ---
 
+<a id="arquitectura"></a>
 ## 🏗️ Arquitectura
 
 ```
@@ -44,7 +47,7 @@ El agente utiliza la técnica **RAG (Retrieval-Augmented Generation)** para resp
                       │
 ┌─────────────────────▼────────────────────────────────────┐
 │                  Agente Inteligente                        │
-│             LangChain + Groq (openai/gpt-oss-20b) API                 │
+│             LangChain + Groq (openai/gpt-oss-20b) API     │
 │         (Orquestación, Memoria, Razonamiento)             │
 └─────────────────────┬────────────────────────────────────┘
                       │
@@ -63,7 +66,7 @@ El agente utiliza la técnica **RAG (Retrieval-Augmented Generation)** para resp
 1. **Ingesta**: Los documentos PDF del curso se cargan, dividen en fragmentos y se generan embeddings vectoriales de forma local.
 2. **Indexación**: Los embeddings se almacenan en ChromaDB para búsqueda semántica eficiente.
 3. **Consulta**: Cuando el usuario hace una pregunta sobre alguna formación, se buscan los fragmentos más relevantes.
-4. **Generación**: El LLM (openai/gpt-oss-20b vía Groq) genera una respuesta contextualizada usando los fragmentos recuperados.
+4. **Generación**: El LLM (`openai/gpt-oss-20b` vía Groq) genera una respuesta contextualizada usando los fragmentos recuperados.
 
 ---
 
@@ -94,21 +97,27 @@ Challenge-ALURA-Agente/
 │   ├── config.py            # Configuración y constantes
 │   └── utils.py             # Funciones utilitarias
 ├── data/
-│   └── knowledge_base/      # Documentos PDF/CSV
+│   └── knowledge_base/      # Documentos PDF de las formaciones
+├── despliegue/              # Capturas y evidencias del deploy en Render
+│   ├── Aplicacion_deployeada.jpg
+│   ├── Challenge_Alura_Deploy.jpg
+│   └── Deploy_Render.jpg
 ├── tests/
-│   └── test_agent.py        # Tests del proyecto
+│   └── test_agent.py        # Tests unitarios del proyecto
 ├── .env.example             # Template de variables de entorno
 ├── .gitignore
-├── Dockerfile               # Configuración Docker
-├── docker-compose.yml       # Orquestación Docker
+├── Dockerfile               # Configuración Docker optimizada
+├── docker-compose.yml       # Orquestación Docker local
 ├── render.yaml              # Configuración Blueprint para Render
 ├── requirements.txt         # Dependencias Python
-├── planificacion.md         # Planificación del proyecto
-└── README.md                # Este archivo
+├── planificacion.md         # Planificación detallada del proyecto
+└── README.md                # Documentación principal
 ```
 
 ---
 
+<a id="instalación"></a>
+<a id="instalacion"></a>
 ## 🚀 Instalación
 
 ### Prerrequisitos
@@ -150,7 +159,7 @@ cp .env.example .env
 
 ### Paso 5: Indexar documentos de ONE AI FOR TECH
 
-Los archivos PDF de las formaciones ya se encuentran en `data/knowledge_base/`. Para procesarlos e indexarlos ejecute:
+Los archivos PDF de las formaciones ya se encuentran en `data/knowledge_base/`. Para procesarlos e indexarlos ejecuta:
 
 ```bash
 python create_sample_data.py
@@ -166,40 +175,18 @@ La aplicación estará disponible en `http://localhost:8501`.
 
 ---
 
+<a id="uso"></a>
 ## 📖 Uso
 
-1. **Cargar documentos**: Verifica los archivos PDF en `data/knowledge_base/`
-2. **Indexar**: Haz clic en "🔄 Indexar Documentos" en el panel lateral (o ejecuta `python create_sample_data.py`)
-3. **Preguntar**: Escribe tu pregunta sobre el programa ONE AI FOR TECH o sus formaciones en el chat
-4. **Explorar**: El agente responderá basándose en los PDFs oficiales, citando las fuentes correspondientes
+1. **Cargar documentos**: Verifica los archivos PDF en `data/knowledge_base/`.
+2. **Indexar**: Haz clic en **"⟳ Indexar documentos"** en el panel lateral (o ejecuta `python create_sample_data.py`).
+3. **Preguntar**: Escribe tu pregunta sobre el programa ONE AI FOR TECH o sus formaciones en el chat.
+4. **Explorar**: El agente responderá basándose en los PDFs oficiales, citando las fuentes correspondientes.
+5. **Guardar**: Haz clic en **"💾 Guardar conversación"** para descargar el historial completo en formato Markdown.
 
 ---
 
-## 🐳 Despliegue con Docker
-
-### Local
-
-```bash
-# Construir y ejecutar
-docker compose up --build
-
-# La app estará en http://localhost:8501
-```
-
-### En Render (Cloud Deployment)
-
-El proyecto incluye un archivo `render.yaml` y un `Dockerfile` totalmente listo para Render:
-
-1. Registrate en [Render.com](https://render.com/) e inicia sesión con GitHub.
-2. Haz clic en **"New +"** -> **"Web Service"**.
-3. Conecta tu repositorio `Challenge-ALURA-Agente`.
-4. Render detectará automáticamente el `Dockerfile`.
-5. En la sección **Environment Variables**, añade:
-   - `GROQ_API_KEY`: Tu API Key de Groq.
-6. Haz clic en **"Create Web Service"**. Tu aplicación estará pública en pocos minutos.
-
----
-
+<a id="ejemplos-de-preguntas-y-respuestas"></a>
 ## 💡 Ejemplos de Preguntas y Respuestas
 
 El agente es capaz de responder consultas complejas sobre el programa y sus contenidos apoyándose en la base de conocimiento:
@@ -225,17 +212,27 @@ El agente es capaz de responder consultas complejas sobre el programa y sus cont
 
 ---
 
+<a id="despliegue"></a>
+<a id="evidencia-del-despliegue-en-la-nube-render"></a>
+<a id="demostracion"></a>
 ## ☁️ Evidencia del Despliegue en la Nube (Render)
 
-La aplicación ha sido preparada y desplegada en **Render** como un servicio Web de Docker.
+La aplicación está completamente desplegada y funcionando públicamente en **Render** como un Web Service de Docker.
 
-- 🌐 **Enlace público:** `https://challenge-alura-agente.onrender.com` *(o tu URL pública asignada)*
+- 🌐 **Enlace público:** [https://challenge-alura-agente-ggi9.onrender.com](https://challenge-alura-agente-ggi9.onrender.com)
 - 💻 **Plataforma:** Render Cloud (Docker Web Service)
+- 🔒 **Protocolo:** HTTPS habilitado
 
-### 📸 Captura de Pantalla
-![Demostración de la aplicación en Render](docs/screenshot_render.png)
+### 📸 Evidencias de Despliegue
 
-> _Nota: Reemplazar `docs/screenshot_render.png` con la captura de pantalla real ejecutándose en Render._
+#### 1. Panel de Render (Servicio Activo)
+![Panel de Render](despliegue/Deploy_Render.jpg)
+
+#### 2. Aplicación Ejecutándose en la Nube
+![Aplicación Web en Render](despliegue/Aplicacion_deployeada.jpg)
+
+#### 3. Agente Inteligente Respondiendo en Producción
+![Agente Inteligente en Producción](despliegue/Challenge_Alura_Deploy.jpg)
 
 ---
 
