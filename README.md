@@ -13,7 +13,7 @@
 
 🌐 **[Acceder a la Aplicación en Vivo](https://challenge-alura-agente-ggi9.onrender.com)**
 
-[Arquitectura](#-arquitectura) • [Instalación](#-instalación) • [Uso](#-uso) • [Ejemplos](#-ejemplos-de-preguntas-y-respuestas) • [Despliegue y Evidencias](#-evidencia-del-despliegue-en-la-nube-render)
+[Arquitectura](#arquitectura) • [Instalación](#instalación) • [Uso](#uso) • [Ejemplos](#ejemplos-de-preguntas-y-respuestas) • [Despliegue y Evidencias](#evidencia-del-despliegue-en-la-nube-render)
 
 </div>
 
@@ -36,7 +36,6 @@ El agente utiliza la técnica **RAG (Retrieval-Augmented Generation)** para resp
 
 ---
 
-<a id="arquitectura"></a>
 ## 🏗️ Arquitectura
 
 ```
@@ -116,8 +115,6 @@ Challenge-ALURA-Agente/
 
 ---
 
-<a id="instalación"></a>
-<a id="instalacion"></a>
 ## 🚀 Instalación
 
 ### Prerrequisitos
@@ -175,7 +172,6 @@ La aplicación estará disponible en `http://localhost:8501`.
 
 ---
 
-<a id="uso"></a>
 ## 📖 Uso
 
 1. **Cargar documentos**: Verifica los archivos PDF en `data/knowledge_base/`.
@@ -186,7 +182,6 @@ La aplicación estará disponible en `http://localhost:8501`.
 
 ---
 
-<a id="ejemplos-de-preguntas-y-respuestas"></a>
 ## 💡 Ejemplos de Preguntas y Respuestas
 
 El agente es capaz de responder consultas complejas sobre el programa y sus contenidos apoyándose en la base de conocimiento:
@@ -212,9 +207,6 @@ El agente es capaz de responder consultas complejas sobre el programa y sus cont
 
 ---
 
-<a id="despliegue"></a>
-<a id="evidencia-del-despliegue-en-la-nube-render"></a>
-<a id="demostracion"></a>
 ## ☁️ Evidencia del Despliegue en la Nube (Render)
 
 La aplicación está completamente desplegada y funcionando públicamente en **Render** como un Web Service de Docker.
